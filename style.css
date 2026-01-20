@@ -5,7 +5,7 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Header bar */
+/* Header */
 .top-bar {
     background-color: #333;
     color: white;
@@ -13,7 +13,7 @@ body {
     position: relative;
 }
 
-/* Title section */
+/* Title */
 .title-area h1 {
     margin: 0;
     font-size: 32px;
@@ -25,7 +25,7 @@ body {
     color: #ccc;
 }
 
-/* Search area - fixed top right */
+/* Search - top right */
 .search-area {
     position: absolute;
     top: 20px;
@@ -44,12 +44,37 @@ body {
     font-size: 14px;
 }
 
-/* Main content */
+/* Main */
 main {
-    padding: 40px;
+    padding: 20px;
     text-align: center;
 }
 
+/* Slideshow */
+.slideshow-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+    animation: fade 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* Button */
 button {
     padding: 12px 20px;
     font-size: 16px;
