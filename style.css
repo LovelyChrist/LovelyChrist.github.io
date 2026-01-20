@@ -5,12 +5,12 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Top header bar */
+/* Header bar */
 .top-bar {
     background-color: #333;
     color: white;
     padding: 20px 40px;
-    position: relative; /* IMPORTANT */
+    position: relative;
 }
 
 /* Title section */
@@ -25,7 +25,7 @@ body {
     color: #ccc;
 }
 
-/* Search section */
+/* Search area - fixed top right */
 .search-area {
     position: absolute;
     top: 20px;
