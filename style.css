@@ -3,17 +3,50 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    text-align: center;
 }
 
-header {
+/* Top header bar */
+.top-bar {
     background-color: #333;
     color: white;
-    padding: 30px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* Title section */
+.title-area h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.subtitle {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Search section */
+.search-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-area label {
+    font-size: 14px;
+}
+
+.search-area input {
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+/* Main content */
 main {
     padding: 40px;
+    text-align: center;
 }
 
 button {
@@ -22,10 +55,12 @@ button {
     cursor: pointer;
 }
 
+/* Footer */
 footer {
     background-color: #222;
     color: white;
     padding: 10px;
+    text-align: center;
     position: fixed;
     width: 100%;
     bottom: 0;
