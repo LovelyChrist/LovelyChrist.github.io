@@ -43,40 +43,32 @@ body {
     border: none;
 }
 
-/* CSS SLIDER */
-.slider-container {
+/* SLIDESHOW */
+.slideshow-container {
+    position: relative;
     width: 100%;
     height: 400px;
     overflow: hidden;
-    position: relative;
     margin-top: 20px;
+    background: black;
 }
 
-.slider-track {
-    display: flex;
-    width: 400%; /* 4 images */
-    height: 100%;
-    position: relative;
-    left: 0;
-    animation: slide 20s infinite;
-}
-
-.slider-track img {
-    width: 25%;
+.slide {
+    position: absolute;
+    width: 100%;
     height: 100%;
     object-fit: cover;
+    top: 0;
+    left: 100%; /* start offscreen to the right */
+    transition: left 1.5s ease-in-out;
 }
 
-@keyframes slide {
-    0% { left: 0; }
-    20% { left: 0; }
-    25% { left: -100%; }
-    45% { left: -100%; }
-    50% { left: -200%; }
-    70% { left: -200%; }
-    75% { left: -300%; }
-    95% { left: -300%; }
-    100% { left: -400%; }
+.slide.active {
+    left: 0; /* visible */
+}
+
+.slide.exit {
+    left: -100%; /* slide off to the left */
 }
 
 /* PRODUCTS */
