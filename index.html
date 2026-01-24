@@ -2,50 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LovelyChrist Shop</title>
+    <title>LovelyChrist</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="top-bar">
-    <div class="logo">
-        <h1>LovelyChrist</h1>
-    </div>
+<header class="top-header">
+    <h1>LovelyChrist</h1>
+    <p class="subtitle">shop • brand • sale</p>
 
-    <div class="header-right">
-        <input type="text" id="search" placeholder="Search products...">
+    <nav class="nav-links">
+        <a href="#">Shop</a>
+        <a href="#">Info</a>
+        <a href="#">Sale</a>
+        <a href="#">Story</a>
+        <a href="#">Cart</a>
 
-        <nav class="header-links">
-            <a href="index.html">Shop</a>
-            <a href="#">Info</a>
-            <a href="#">Sale</a>
-            <a href="#">Story</a>
-            <a href="cart.html">Cart 🛒</a>
-        </nav>
-    </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+        </div>
+    </nav>
 </header>
 
 <main>
 
-    <!-- Slideshow -->
-    <div class="slideshow-container">
-        <img class="slide active" src="https://via.placeholder.com/1200x400?text=Faith+Inspired" alt="Slide 1">
-        <img class="slide" src="https://via.placeholder.com/1200x400?text=LovelyChrist+Brand" alt="Slide 2">
-        <img class="slide" src="https://via.placeholder.com/1200x400?text=Shop+With+Purpose" alt="Slide 3">
-    </div>
+    <!-- SLIDESHOW -->
+    <div class="slideshow-wrapper">
+        <div class="slideshow-track">
 
-    <!-- Products -->
-    <section class="products">
-        <div class="product-card" onclick="goToProduct('Faith Hoodie', 45)">
-            Faith Hoodie<br>$45
+            <img src="cross.PNG" class="slide">
+            <img src="kingsss.png" class="slide">
+            <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65" class="slide">
+
         </div>
-        <div class="product-card" onclick="goToProduct('Christian Tee', 25)">
-            Christian Tee<br>$25
-        </div>
-        <div class="product-card" onclick="goToProduct('LovelyChrist Cap', 20)">
-            LovelyChrist Cap<br>$20
-        </div>
-    </section>
+    </div>
 
 </main>
 
