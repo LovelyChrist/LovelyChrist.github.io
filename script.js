@@ -2,6 +2,18 @@
    SLIDESHOW
 ========================= */
 
+
+const preloadImages = [
+    './jesusss.png',
+    './faith-field.jpg',
+    './cross-sunrise.jpg'
+];
+
+preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
 const slides = document.querySelectorAll(".slide");
 let currentSlide = 0;
 
