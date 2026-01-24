@@ -23,19 +23,30 @@
 
 <main>
 
-    <!-- SLIDESHOW -->
-    <div class="slideshow-container">
-        <img src="jesusss.png" class="slide active" alt="Jesus">
-        <img src="faith-field.jpg" class="slide" alt="Faith in Field">
-        <img src="cross-sunrise.jpg" class="slide" alt="Cross at Sunrise">
-        <img src="jesusss.png" class="slide active" alt="Jesus">
+    <!-- CSS SLIDER -->
+    <div class="slider-container">
+        <div class="slider-track">
+            <img src="jesusss.png" alt="Jesus">
+            <img src="faith-field.jpg" alt="Faith in Field">
+            <img src="cross-sunrise.jpg" alt="Cross at Sunrise">
+            <img src="jesusss.png" alt="Jesus"> <!-- duplicate for loop -->
+        </div>
     </div>
 
-    <!-- SAMPLE PRODUCT -->
-    <div class="product-card">
-        <h3>Faith Tee</h3>
-        <p>$25</p>
-        <button onclick="addToCart('Faith Tee', 25)">Add to Cart</button>
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+        <div class="product-card">
+            <h3>Faith Tee</h3>
+            <p>$25</p>
+            <button onclick="addToCart('Faith Tee', 25)">Add to Cart</button>
+            <a href="product.html?name=Faith Tee&price=25">View Product</a>
+        </div>
+        <div class="product-card">
+            <h3>Cross Hoodie</h3>
+            <p>$45</p>
+            <button onclick="addToCart('Cross Hoodie', 45)">Add to Cart</button>
+            <a href="product.html?name=Cross Hoodie&price=45">View Product</a>
+        </div>
     </div>
 
 </main>
