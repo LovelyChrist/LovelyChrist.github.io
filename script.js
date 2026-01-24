@@ -1,34 +1,62 @@
-/* ================================
-   SLIDESHOW: LEFT → RIGHT MOTION
-================================ */
+/* =========================
+   SLIDESHOW
+========================= */
 
 const slides = document.querySelectorAll(".slide");
 let currentSlide = 0;
 
-function showSlides() {
-    if (slides.length === 0) return;
+function rotateSlides() {
+    if (!slides.length) return;
 
-    slides.forEach(slide => {
-        slide.classList.remove("active");
-        slide.classList.remove("exit");
+    slides.forEach(s => {
+        s.classList.remove("active");
+        s.classList.remove("exit");
     });
 
     slides[currentSlide].classList.add("exit");
-
     currentSlide = (currentSlide + 1) % slides.length;
 
     slides[currentSlide].style.left = "100%";
-    slides[currentSlide].offsetHeight; // force reflow
+    slides[currentSlide].offsetHeight;
     slides[currentSlide].classList.add("active");
 }
 
-// slow, smooth rotation
-setInterval(showSlides, 5000);
+setInterval(rotateSlides, 5000);
 
+/* =========================
+   CART SYSTEM
+========================= */
 
-/* ================================
-   SEARCH SYSTEM (READY)
-================================ */
+function addToCart(name, price) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart 🙏");
+}
+
+const cartContainer = document.getElementById("cartItems");
+
+if (cartContainer) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (!cart.length) {
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        cart.forEach(item => {
+            cartContainer.innerHTML += `<p>${item.name} — $${item.price}</p>`;
+        });
+    }
+}
+
+function checkout() {
+    localStorage.removeItem("cart");
+    alert("Order placed. God bless 🙌");
+    window.location.href = "index.html";
+}
+
+/* =========================
+   SEARCH
+========================= */
 
 const searchInput = document.getElementById("search");
 const products = document.querySelectorAll(".product-card");
@@ -36,10 +64,9 @@ const products = document.querySelectorAll(".product-card");
 if (searchInput) {
     searchInput.addEventListener("input", () => {
         const value = searchInput.value.toLowerCase();
-
-        products.forEach(product => {
-            product.style.display =
-                product.innerText.toLowerCase().includes(value)
+        products.forEach(p => {
+            p.style.display =
+                p.innerText.toLowerCase().includes(value)
                     ? "block"
                     : "none";
         });
