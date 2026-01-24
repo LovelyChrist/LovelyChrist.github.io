@@ -1,22 +1,19 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
 }
 
 /* Header */
 .top-bar {
-    background-color: #333;
+    background: #333;
     color: white;
     padding: 20px 40px;
     position: relative;
 }
 
-/* Title */
 .title-area h1 {
     margin: 0;
-    font-size: 32px;
 }
 
 .subtitle {
@@ -25,69 +22,64 @@ body {
     color: #ccc;
 }
 
-/* Search - top right */
+/* Search */
 .search-area {
     position: absolute;
     top: 20px;
     right: 40px;
     display: flex;
-    align-items: center;
     gap: 10px;
-}
-
-.search-area label {
-    font-size: 14px;
-}
-
-.search-area input {
-    padding: 6px 10px;
-    font-size: 14px;
-}
-
-/* Main */
-main {
-    padding: 20px;
-    text-align: center;
+    align-items: center;
 }
 
 /* Slideshow */
 .slideshow-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto 40px;
     position: relative;
     overflow: hidden;
+    max-width: 1200px;
+    margin: 20px auto 40px;
 }
 
 .slide {
     width: 100%;
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
 }
 
 .slide.active {
-    display: block;
-    animation: fade 1.5s;
+    left: 0;
+    transform: translateX(0);
+    opacity: 1;
 }
 
-@keyframes fade {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
+.slide.exit {
+    transform: translateX(-100%);
+    opacity: 0;
 }
 
-/* Button */
-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* Products */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.product {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 6px;
 }
 
 /* Footer */
 footer {
-    background-color: #222;
+    background: #222;
     color: white;
     padding: 10px;
     text-align: center;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }
