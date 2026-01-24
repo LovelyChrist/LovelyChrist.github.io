@@ -2,49 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LovelyChrist</title>
+    <title>LovelyChrist Shop</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="top-bar">
-        <div class="title-area">
-            <h1>LovelyChrist</h1>
-            <p class="subtitle">shop · brand · sale</p>
-        </div>
+<header class="top-bar">
+    <h1>LovelyChrist</h1>
+    <a href="cart.html" class="cart-link">Cart 🛒</a>
+</header>
 
-        <div class="search-area">
-            <label for="search">Search</label>
-            <input type="text" id="search" placeholder="Search products...">
-        </div>
-    </header>
+<main class="products">
 
-    <!-- Main -->
-    <main>
+    <div class="product-card" onclick="goToProduct('Faith Hoodie', 45)">
+        Faith Hoodie<br>$45
+    </div>
 
-        <!-- Slideshow -->
-        <div class="slideshow-container">
-            <img class="slide active" src="https://via.placeholder.com/1200x400?text=Faith+Inspired" />
-            <img class="slide" src="https://via.placeholder.com/1200x400?text=LovelyChrist+Brand" />
-            <img class="slide" src="https://via.placeholder.com/1200x400?text=Shop+With+Purpose" />
-        </div>
+    <div class="product-card" onclick="goToProduct('Christian Tee', 25)">
+        Christian Tee<br>$25
+    </div>
 
-        <!-- Products -->
-        <section class="products">
-            <div class="product" data-name="Faith Hoodie">Faith Hoodie</div>
-            <div class="product" data-name="Christian Tee">Christian Tee</div>
-            <div class="product" data-name="LovelyChrist Cap">LovelyChrist Cap</div>
-            <div class="product" data-name="Scripture Mug">Scripture Mug</div>
-        </section>
+    <div class="product-card" onclick="goToProduct('LovelyChrist Cap', 20)">
+        LovelyChrist Cap<br>$20
+    </div>
 
-    </main>
+</main>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 LovelyChrist</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
