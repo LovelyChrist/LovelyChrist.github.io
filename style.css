@@ -61,6 +61,7 @@ body {
     top: 0;
     left: 100%; /* start offscreen to the right */
     transition: left 1.5s ease-in-out;
+    z-index: 1; /* BELOW arrows */
 }
 
 .slide.active {
@@ -70,6 +71,7 @@ body {
 .slide.exit {
     left: -100%; /* slide off to the left */
 }
+
 /* SLIDESHOW ARROWS */
 .prev, .next {
     position: absolute;
@@ -82,7 +84,7 @@ body {
     user-select: none;
     background: rgba(0,0,0,0.3);
     border-radius: 50%;
-    z-index: 10; /* MAKE SURE THEY ARE ABOVE IMAGES */
+    z-index: 10; /* ABOVE images */
 }
 
 .prev:hover, .next:hover {
@@ -91,6 +93,7 @@ body {
 
 .prev { left: 10px; }
 .next { right: 10px; }
+
 /* PRODUCTS */
 .product-grid {
     display: flex;
