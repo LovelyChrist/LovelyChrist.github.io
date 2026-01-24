@@ -1,4 +1,34 @@
 /* =========================
+   SLIDESHOW
+========================= */
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function rotateSlides() {
+    if (slides.length === 0) return;
+
+    // remove all classes
+    slides.forEach(slide => {
+        slide.classList.remove("active");
+        slide.classList.remove("exit");
+    });
+
+    // current slide exits left
+    slides[currentSlide].classList.add("exit");
+
+    // next slide index
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // next slide enters from right
+    slides[currentSlide].style.left = "100%";
+    slides[currentSlide].offsetHeight; // force reflow
+    slides[currentSlide].classList.add("active");
+}
+
+// start slideshow
+setInterval(rotateSlides, 5000);
+
+/* =========================
    CART SYSTEM
 ========================= */
 function addToCart(name, price) {
@@ -12,7 +42,6 @@ const cartContainer = document.getElementById("cartItems");
 
 if (cartContainer) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     if (!cart.length) {
         cartContainer.innerHTML = "<p>Your cart is empty.</p>";
     } else {
