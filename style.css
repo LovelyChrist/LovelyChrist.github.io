@@ -1,85 +1,38 @@
 body {
+    font-family: Arial;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: #f4f4f4;
 }
 
-/* Header */
 .top-bar {
     background: #333;
     color: white;
-    padding: 20px 40px;
-    position: relative;
-}
-
-.title-area h1 {
-    margin: 0;
-}
-
-.subtitle {
-    margin: 5px 0 0;
-    font-size: 14px;
-    color: #ccc;
-}
-
-/* Search */
-.search-area {
-    position: absolute;
-    top: 20px;
-    right: 40px;
+    padding: 15px 30px;
     display: flex;
-    gap: 10px;
-    align-items: center;
+    justify-content: space-between;
 }
 
-/* Slideshow */
-.slideshow-container {
-    position: relative;
-    overflow: hidden;
-    max-width: 1200px;
-    margin: 20px auto 40px;
-}
-
-.slide {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    opacity: 0;
-    transition: transform 1s ease, opacity 1s ease;
-}
-
-.slide.active {
-    left: 0;
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.slide.exit {
-    transform: translateX(-100%);
-    opacity: 0;
-}
-
-/* Products */
 .products {
+    padding: 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
     gap: 20px;
-    padding: 40px;
 }
 
-.product {
+.product-card {
     background: white;
     padding: 20px;
     text-align: center;
     font-weight: bold;
+    cursor: pointer;
     border-radius: 6px;
 }
 
-/* Footer */
-footer {
-    background: #222;
-    color: white;
-    padding: 10px;
-    text-align: center;
+.product-detail, main {
+    padding: 40px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
 }
