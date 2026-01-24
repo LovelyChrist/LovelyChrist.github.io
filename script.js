@@ -1,44 +1,6 @@
 /* =========================
-   SLIDESHOW
-========================= */
-
-
-const preloadImages = [
-    './jesusss.png',
-    './faith-field.jpg',
-    './cross-sunrise.jpg'
-];
-
-preloadImages.forEach(src => {
-    const img = new Image();
-    img.src = src;
-});
-
-const slides = document.querySelectorAll(".slide");
-let currentSlide = 0;
-
-function rotateSlides() {
-    if (!slides.length) return;
-
-    slides.forEach(s => {
-        s.classList.remove("active");
-        s.classList.remove("exit");
-    });
-
-    slides[currentSlide].classList.add("exit");
-    currentSlide = (currentSlide + 1) % slides.length;
-
-    slides[currentSlide].style.left = "100%";
-    slides[currentSlide].offsetHeight;
-    slides[currentSlide].classList.add("active");
-}
-
-setInterval(rotateSlides, 5000);
-
-/* =========================
    CART SYSTEM
 ========================= */
-
 function addToCart(name, price) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push({ name, price });
@@ -61,15 +23,12 @@ if (cartContainer) {
 }
 
 function checkout() {
-    localStorage.removeItem("cart");
-    alert("Order placed. God bless 🙌");
-    window.location.href = "index.html";
+    window.location.href = 'checkout.html';
 }
 
 /* =========================
    SEARCH
 ========================= */
-
 const searchInput = document.getElementById("search");
 const products = document.querySelectorAll(".product-card");
 
