@@ -70,7 +70,26 @@ body {
 .slide.exit {
     left: -100%; /* slide off to the left */
 }
+/* SLIDESHOW ARROWS */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 40px;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50%;
+}
 
+.prev:hover, .next:hover {
+    background: rgba(0,0,0,0.6);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
 /* PRODUCTS */
 .product-grid {
     display: flex;
