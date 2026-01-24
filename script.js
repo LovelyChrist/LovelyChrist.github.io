@@ -72,3 +72,45 @@ if (searchInput) {
         });
     });
 }
+
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+// Rotate slides automatically
+function rotateSlides() {
+    showSlide(currentSlide + 1);
+}
+
+let slideInterval = setInterval(rotateSlides, 5000);
+
+// Show slide by index
+function showSlide(index) {
+    slides.forEach(slide => {
+        slide.classList.remove("active");
+        slide.classList.remove("exit");
+    });
+
+    // current exits left
+    slides[currentSlide].classList.add("exit");
+
+    // calculate next slide index
+    currentSlide = (index + slides.length) % slides.length;
+
+    // next slide enters from right
+    slides[currentSlide].style.left = "100%";
+    slides[currentSlide].offsetHeight; // force reflow
+    slides[currentSlide].classList.add("active");
+}
+
+// Arrow controls
+function nextSlide() {
+    clearInterval(slideInterval); // reset interval
+    showSlide(currentSlide + 1);
+    slideInterval = setInterval(rotateSlides, 5000);
+}
+
+function prevSlide() {
+    clearInterval(slideInterval); // reset interval
+    showSlide(currentSlide - 1);
+    slideInterval = setInterval(rotateSlides, 5000);
+}
