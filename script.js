@@ -1,5 +1,5 @@
 /* ================================
-   SLIDESHOW: LEFT → RIGHT ANIMATION
+   SLIDESHOW: LEFT → RIGHT MOTION
 ================================ */
 
 const slides = document.querySelectorAll(".slide");
@@ -22,10 +22,12 @@ function showSlides() {
     slides[currentSlide].classList.add("active");
 }
 
-setInterval(showSlides, 4500);
+// slow, smooth rotation
+setInterval(showSlides, 5000);
+
 
 /* ================================
-   SEARCH FILTER (READY)
+   SEARCH SYSTEM (READY)
 ================================ */
 
 const searchInput = document.getElementById("search");
@@ -34,6 +36,7 @@ const products = document.querySelectorAll(".product-card");
 if (searchInput) {
     searchInput.addEventListener("input", () => {
         const value = searchInput.value.toLowerCase();
+
         products.forEach(product => {
             product.style.display =
                 product.innerText.toLowerCase().includes(value)
