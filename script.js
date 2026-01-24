@@ -1,30 +1,44 @@
-/* SLIDESHOW LOGIC (LEFT → RIGHT MOTION) */
-const slides = document.querySelectorAll(".slide");
-let current = 0;
-
-function changeSlide() {
-    slides[current].classList.add("exit");
-    slides[current].classList.remove("active");
-
-    current = (current + 1) % slides.length;
-
-    slides[current].classList.remove("exit");
-    slides[current].style.left = "100%";
-    slides[current].offsetHeight; // force reflow
-    slides[current].classList.add("active");
+/* PRODUCT PAGE NAVIGATION */
+function goToProduct(name, price) {
+    localStorage.setItem("productName", name);
+    localStorage.setItem("productPrice", price);
+    window.location.href = "product.html";
 }
 
-setInterval(changeSlide, 3000);
+/* LOAD PRODUCT */
+if (document.getElementById("productName")) {
+    document.getElementById("productName").innerText =
+        localStorage.getItem("productName");
 
-/* SEARCH FILTER */
-const searchInput = document.getElementById("search");
-const products = document.querySelectorAll(".product");
+    document.getElementById("productPrice").innerText =
+        localStorage.getItem("productPrice");
+}
 
-searchInput.addEventListener("input", () => {
-    const value = searchInput.value.toLowerCase();
-
-    products.forEach(product => {
-        const name = product.dataset.name.toLowerCase();
-        product.style.display = name.includes(value) ? "block" : "none";
+/* CART SYSTEM */
+function addToCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({
+        name: localStorage.getItem("productName"),
+        price: localStorage.getItem("productPrice")
     });
-});
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart!");
+}
+
+/* DISPLAY CART */
+if (document.getElementById("cartItems")) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("cartItems");
+
+    cart.forEach(item => {
+        container.innerHTML += `<p>${item.name} - $${item.price}</p>`;
+    });
+}
+
+/* CHECKOUT */
+function completeOrder(e) {
+    e.preventDefault();
+    localStorage.removeItem("cart");
+    alert("Order placed! Thank you 🙏");
+    window.location.href = "index.html";
+}
