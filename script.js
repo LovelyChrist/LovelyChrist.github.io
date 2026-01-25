@@ -1,5 +1,5 @@
 /* =========================
-   SLIDESHOW CONVEYOR BELT
+   CONVEYOR BELT SLIDESHOW
 ========================= */
 
 const wrapper = document.querySelector(".slides-wrapper");
@@ -7,22 +7,28 @@ const slides = document.querySelectorAll(".slide");
 let currentIndex = 0;
 const totalSlides = slides.length;
 
-// Show slide by shifting wrapper
+// Move slides left
 function showSlide(index) {
     currentIndex = (index + totalSlides) % totalSlides;
     wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-// Auto-slide every 5 seconds
-setInterval(() => showSlide(currentIndex + 1), 5000);
-
-// Arrows
-function nextSlide() {
+// Auto slide
+let slideInterval = setInterval(() => {
     showSlide(currentIndex + 1);
+}, 5000);
+
+// Arrow controls
+function nextSlide() {
+    clearInterval(slideInterval);
+    showSlide(currentIndex + 1);
+    slideInterval = setInterval(() => showSlide(currentIndex + 1), 5000);
 }
 
 function prevSlide() {
+    clearInterval(slideInterval);
     showSlide(currentIndex - 1);
+    slideInterval = setInterval(() => showSlide(currentIndex + 1), 5000);
 }
 
 /* =========================
@@ -33,7 +39,7 @@ function addToCart(name, price) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push({ name, price });
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`Added ${name} to cart 🙏`);
+    alert(`${name} added to cart 🙏`);
 }
 
 /* =========================
@@ -46,8 +52,8 @@ const products = document.querySelectorAll(".product-card");
 if (searchInput) {
     searchInput.addEventListener("input", () => {
         const value = searchInput.value.toLowerCase();
-        products.forEach(p => {
-            p.style.display = p.innerText.toLowerCase().includes(value)
+        products.forEach(product => {
+            product.style.display = product.innerText.toLowerCase().includes(value)
                 ? "block"
                 : "none";
         });
