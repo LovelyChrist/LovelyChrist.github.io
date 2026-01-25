@@ -53,23 +53,17 @@ body {
     background: black;
 }
 
+.slides-wrapper {
+    display: flex;
+    width: 300%; /* 3 slides */
+    height: 100%;
+    transition: transform 1s ease-in-out;
+}
+
 .slide {
-    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    top: 0;
-    left: 100%; /* start offscreen to the right */
-    transition: left 1.5s ease-in-out;
-    z-index: 1; /* BELOW arrows */
-}
-
-.slide.active {
-    left: 0; /* visible */
-}
-
-.slide.exit {
-    left: -100%; /* slide off to the left */
 }
 
 /* SLIDESHOW ARROWS */
@@ -84,7 +78,7 @@ body {
     user-select: none;
     background: rgba(0,0,0,0.3);
     border-radius: 50%;
-    z-index: 10; /* ABOVE images */
+    z-index: 10;
 }
 
 .prev:hover, .next:hover {
