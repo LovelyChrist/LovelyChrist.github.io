@@ -1,32 +1,51 @@
 /* =========================
-   SLIDESHOW
+   SLIDESHOW (FIXED)
 ========================= */
+
 const slides = document.querySelectorAll(".slide");
 let currentSlide = 0;
+let slideInterval;
 
-function rotateSlides() {
-    if (slides.length === 0) return;
-
-    // remove all classes
+function showSlide(nextIndex) {
     slides.forEach(slide => {
-        slide.classList.remove("active");
-        slide.classList.remove("exit");
+        slide.classList.remove("active", "exit");
     });
 
     // current slide exits left
     slides[currentSlide].classList.add("exit");
 
-    // next slide index
-    currentSlide = (currentSlide + 1) % slides.length;
+    // calculate next slide
+    currentSlide = (nextIndex + slides.length) % slides.length;
 
-    // next slide enters from right
+    // force start position offscreen right
     slides[currentSlide].style.left = "100%";
     slides[currentSlide].offsetHeight; // force reflow
     slides[currentSlide].classList.add("active");
 }
 
-// start slideshow
-setInterval(rotateSlides, 5000);
+function nextSlide() {
+    resetInterval();
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    resetInterval();
+    showSlide(currentSlide - 1);
+}
+
+function startSlideshow() {
+    slideInterval = setInterval(() => {
+        showSlide(currentSlide + 1);
+    }, 5000);
+}
+
+function resetInterval() {
+    clearInterval(slideInterval);
+    startSlideshow();
+}
+
+// start slideshow on load
+startSlideshow();
 
 /* =========================
    CART SYSTEM
@@ -52,7 +71,7 @@ if (cartContainer) {
 }
 
 function checkout() {
-    window.location.href = 'checkout.html';
+    window.location.href = "checkout.html";
 }
 
 /* =========================
@@ -65,52 +84,9 @@ if (searchInput) {
     searchInput.addEventListener("input", () => {
         const value = searchInput.value.toLowerCase();
         products.forEach(p => {
-            p.style.display =
-                p.innerText.toLowerCase().includes(value)
-                    ? "block"
-                    : "none";
+            p.style.display = p.innerText.toLowerCase().includes(value)
+                ? "block"
+                : "none";
         });
     });
-}
-
-const slides = document.querySelectorAll(".slide");
-let currentSlide = 0;
-
-// Rotate slides automatically
-function rotateSlides() {
-    showSlide(currentSlide + 1);
-}
-
-let slideInterval = setInterval(rotateSlides, 5000);
-
-// Show slide by index
-function showSlide(index) {
-    slides.forEach(slide => {
-        slide.classList.remove("active");
-        slide.classList.remove("exit");
-    });
-
-    // current exits left
-    slides[currentSlide].classList.add("exit");
-
-    // calculate next slide index
-    currentSlide = (index + slides.length) % slides.length;
-
-    // next slide enters from right
-    slides[currentSlide].style.left = "100%";
-    slides[currentSlide].offsetHeight; // force reflow
-    slides[currentSlide].classList.add("active");
-}
-
-// Arrow controls
-function nextSlide() {
-    clearInterval(slideInterval); // reset interval
-    showSlide(currentSlide + 1);
-    slideInterval = setInterval(rotateSlides, 5000);
-}
-
-function prevSlide() {
-    clearInterval(slideInterval); // reset interval
-    showSlide(currentSlide - 1);
-    slideInterval = setInterval(rotateSlides, 5000);
 }
