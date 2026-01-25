@@ -1,92 +1,57 @@
-/* =========================
-   SLIDESHOW (FIXED)
-========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const slides = document.querySelectorAll(".slide");
-let currentSlide = 0;
-let slideInterval;
+    const slides = document.querySelectorAll(".slide");
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
 
-function showSlide(nextIndex) {
-    slides.forEach(slide => {
-        slide.classList.remove("active", "exit");
-    });
+    let currentSlide = 0;
+    let interval;
 
-    // current slide exits left
-    slides[currentSlide].classList.add("exit");
+    function setPositions() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove("active", "exit");
+            slide.style.left = "100%";
 
-    // calculate next slide
-    currentSlide = (nextIndex + slides.length) % slides.length;
-
-    // force start position offscreen right
-    slides[currentSlide].style.left = "100%";
-    slides[currentSlide].offsetHeight; // force reflow
-    slides[currentSlide].classList.add("active");
-}
-
-function nextSlide() {
-    resetInterval();
-    showSlide(currentSlide + 1);
-}
-
-function prevSlide() {
-    resetInterval();
-    showSlide(currentSlide - 1);
-}
-
-function startSlideshow() {
-    slideInterval = setInterval(() => {
-        showSlide(currentSlide + 1);
-    }, 5000);
-}
-
-function resetInterval() {
-    clearInterval(slideInterval);
-    startSlideshow();
-}
-
-// start slideshow on load
-startSlideshow();
-
-/* =========================
-   CART SYSTEM
-========================= */
-function addToCart(name, price) {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name, price });
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Added to cart 🙏");
-}
-
-const cartContainer = document.getElementById("cartItems");
-
-if (cartContainer) {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if (!cart.length) {
-        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
-    } else {
-        cart.forEach(item => {
-            cartContainer.innerHTML += `<p>${item.name} — $${item.price}</p>`;
+            if (index === currentSlide) {
+                slide.classList.add("active");
+                slide.style.left = "0";
+            }
         });
     }
-}
 
-function checkout() {
-    window.location.href = "checkout.html";
-}
+    function showNext() {
+        slides[currentSlide].classList.add("exit");
+        currentSlide = (currentSlide + 1) % slides.length;
+        setPositions();
+    }
 
-/* =========================
-   SEARCH
-========================= */
-const searchInput = document.getElementById("search");
-const products = document.querySelectorAll(".product-card");
+    function showPrev() {
+        slides[currentSlide].classList.add("exit");
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        setPositions();
+    }
 
-if (searchInput) {
-    searchInput.addEventListener("input", () => {
-        const value = searchInput.value.toLowerCase();
-        products.forEach(p => {
-            p.style.display = p.innerText.toLowerCase().includes(value)
-                ? "block"
-                : "none";
-        });
+    function startAuto() {
+        interval = setInterval(showNext, 5000);
+    }
+
+    function resetAuto() {
+        clearInterval(interval);
+        startAuto();
+    }
+
+    // BUTTON EVENTS (THIS WAS MISSING BEFORE)
+    nextBtn.addEventListener("click", () => {
+        showNext();
+        resetAuto();
     });
-}
+
+    prevBtn.addEventListener("click", () => {
+        showPrev();
+        resetAuto();
+    });
+
+    // INIT
+    setPositions();
+    startAuto();
+});
