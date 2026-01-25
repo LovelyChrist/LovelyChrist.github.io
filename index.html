@@ -26,16 +26,16 @@
     <!-- SLIDESHOW -->
     <div class="slideshow-container">
         <img src="jesusss.png" class="slide active" alt="Jesus">
-        <img src="faith-field.jpg" class="slide" alt="Faith">
-        <img src="cross-sunrise.jpg" class="slide" alt="Cross">
+        <img src="faith-field.jpg" class="slide" alt="Faith in Field">
+        <img src="cross-sunrise.jpg" class="slide" alt="Cross at Sunrise">
 
-        <div class="prev">&#10094;</div>
-        <div class="next">&#10095;</div>
+        <!-- Arrows -->
+        <div class="prev" onclick="prevSlide()">&#10094;</div>
+        <div class="next" onclick="nextSlide()">&#10095;</div>
     </div>
 
     <!-- PRODUCT GRID -->
     <div class="product-grid">
-
         <div class="product-card">
             <h3>Faith Tee</h3>
             <p>$25</p>
@@ -47,3 +47,10 @@
             <p>$45</p>
             <button onclick="addToCart('Cross Hoodie', 45)">Add to Cart</button>
         </div>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
