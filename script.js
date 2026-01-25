@@ -1,46 +1,26 @@
-/* =========================
-   SLIDESHOW (CONVEYOR BELT)
-========================= */
+let index = 0;
+const slides = document.getElementById("slides");
+const totalSlides = slides.children.length;
 
-const slidesWrapper = document.querySelector(".slides-wrapper");
-const slides = document.querySelectorAll(".slide");
-
-let currentIndex = 0;
-const totalSlides = slides.length;
-
-/* Move slideshow */
-function updateSlidePosition() {
-    slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+function showSlide() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
 }
 
-/* Next slide */
 function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlidePosition();
+    index++;
+    if (index >= totalSlides) {
+        index = 0;
+    }
+    showSlide();
 }
 
-/* Previous slide */
 function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateSlidePosition();
+    index--;
+    if (index < 0) {
+        index = totalSlides - 1;
+    }
+    showSlide();
 }
 
-/* Auto-rotate */
+/* auto conveyor */
 setInterval(nextSlide, 5000);
-
-/* =========================
-   CART
-========================= */
-
-function addToCart(name, price) {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name, price });
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Added to cart 🙏");
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-const s
