@@ -1,34 +1,62 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================
+   SLIDESHOW (WORKING)
+========================= */
 
-    /* =========================
-       SLIDESHOW
-    ========================= */
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
 
-    const slides = document.querySelectorAll(".slide");
-    const nextBtn = document.querySelector(".next");
-    const prevBtn = document.querySelector(".prev");
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove("active", "exit");
+        slide.style.left = "100%";
 
-    let currentSlide = 0;
-    let interval;
+        if (i === index) {
+            slide.classList.add("active");
+            slide.style.left = "0";
+        }
+    });
+}
 
-    function setPositions() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove("active", "exit");
-            slide.style.left = "100%";
+function nextSlide() {
+    slides[currentSlide].classList.add("exit");
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
 
-            if (index === currentSlide) {
-                slide.classList.add("active");
-                slide.style.left = "0";
-            }
+function prevSlide() {
+    slides[currentSlide].classList.add("exit");
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+// auto-rotate
+setInterval(nextSlide, 5000);
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(name, price) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart 🙏");
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+const searchInput = document.getElementById("search");
+const products = document.querySelectorAll(".product-card");
+
+if (searchInput) {
+    searchInput.addEventListener("input", () => {
+        const value = searchInput.value.toLowerCase();
+        products.forEach(p => {
+            p.style.display = p.innerText.toLowerCase().includes(value)
+                ? "block"
+                : "none";
         });
-    }
-
-    function showNext() {
-        slides[currentSlide].classList.add("exit");
-        currentSlide = (currentSlide + 1) % slides.length;
-        setPositions();
-    }
-
-    function showPrev() {
-        slides[currentSlide].classList.add("exit");
-        currentSlide = (currentS
+    });
+}
