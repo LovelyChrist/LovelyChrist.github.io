@@ -1,36 +1,29 @@
 /* =========================
-   SLIDESHOW (WORKING)
+   SLIDESHOW CONVEYOR BELT
 ========================= */
 
+const wrapper = document.querySelector(".slides-wrapper");
 const slides = document.querySelectorAll(".slide");
-let currentSlide = 0;
+let currentIndex = 0;
+const totalSlides = slides.length;
 
+// Show slide by shifting wrapper
 function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove("active", "exit");
-        slide.style.left = "100%";
-
-        if (i === index) {
-            slide.classList.add("active");
-            slide.style.left = "0";
-        }
-    });
+    currentIndex = (index + totalSlides) % totalSlides;
+    wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
+// Auto-slide every 5 seconds
+setInterval(() => showSlide(currentIndex + 1), 5000);
+
+// Arrows
 function nextSlide() {
-    slides[currentSlide].classList.add("exit");
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+    showSlide(currentIndex + 1);
 }
 
 function prevSlide() {
-    slides[currentSlide].classList.add("exit");
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
+    showSlide(currentIndex - 1);
 }
-
-// auto-rotate
-setInterval(nextSlide, 5000);
 
 /* =========================
    CART
@@ -40,7 +33,7 @@ function addToCart(name, price) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push({ name, price });
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Added to cart 🙏");
+    alert(`Added ${name} to cart 🙏`);
 }
 
 /* =========================
