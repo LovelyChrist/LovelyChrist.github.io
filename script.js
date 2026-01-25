@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* =========================
+       SLIDESHOW
+    ========================= */
+
     const slides = document.querySelectorAll(".slide");
     const nextBtn = document.querySelector(".next");
     const prevBtn = document.querySelector(".prev");
@@ -27,31 +31,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showPrev() {
         slides[currentSlide].classList.add("exit");
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        setPositions();
-    }
-
-    function startAuto() {
-        interval = setInterval(showNext, 5000);
-    }
-
-    function resetAuto() {
-        clearInterval(interval);
-        startAuto();
-    }
-
-    // BUTTON EVENTS (THIS WAS MISSING BEFORE)
-    nextBtn.addEventListener("click", () => {
-        showNext();
-        resetAuto();
-    });
-
-    prevBtn.addEventListener("click", () => {
-        showPrev();
-        resetAuto();
-    });
-
-    // INIT
-    setPositions();
-    startAuto();
-});
+        currentSlide = (currentS
